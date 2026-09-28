@@ -1,0 +1,16 @@
+# Diamond brush. CraftEngine item defined in cearcheology/configuration/brushes.yml.
+
+id: "cearcheology:brush_diamond"
+
+name: "Diamond Brush"
+
+description: "Advanced archeology brush"
+
+# Brushing speed multiplier. 2.0x: 96 ticks -> 48 ticks.
+speed: 2.0
+
+# Extra progress granted per brush stage.
+bonus-progress: 0
+
+# 1 = basic, 2 = advanced, 3 = superior
+brush-level: 2

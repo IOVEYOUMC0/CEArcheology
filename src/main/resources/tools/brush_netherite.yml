@@ -1,0 +1,16 @@
+# Netherite brush. CraftEngine item defined in cearcheology/configuration/brushes.yml.
+
+id: "cearcheology:brush_netherite"
+
+name: "Netherite Brush"
+
+description: "Superior archeology brush"
+
+# Brushing speed multiplier. 3.0x: 96 ticks -> 32 ticks.
+speed: 3.0
+
+# Extra progress granted per brush stage.
+bonus-progress: 1
+
+# 1 = basic, 2 = advanced, 3 = superior
+brush-level: 3

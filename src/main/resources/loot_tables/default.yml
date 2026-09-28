@@ -1,0 +1,100 @@
+# Loot tables for CEArcheology.
+#
+# Top-level keys are table ids (namespace:path), referenced from a block's `loot-table:`.
+# A table holds pools; each pool rolls `rolls` times and picks an entry by relative `weight`.
+#
+# Entry fields:
+#   type          item | entity | command
+#   item          reward item; for entity/command only the displayed icon
+#   display-item  icon shown while brushing, defaults to `item`
+#   count         number, "min~max", or {min:, max:}; `amount` is an alias
+#   weight        relative probability inside its pool
+#   entity        entity id for type: entity
+#   command       console command for type: command; {player} {x} {y} {z} {world}
+
+cearcheology:default:
+  pools:
+    - rolls: 1
+      entries:
+        - type: item
+          item: minecraft:diamond
+          weight: 1
+        - type: item
+          item: minecraft:gold_nugget
+          weight: 3
+        - type: item
+          item: minecraft:iron_nugget
+          weight: 5
+        - type: item
+          item: minecraft:coal
+          weight: 10
+
+cearcheology:stone:
+  pools:
+    - rolls: 1
+      entries:
+        - type: item
+          item: minecraft:diamond
+          weight: 1
+        - type: item
+          item: minecraft:emerald
+          weight: 2
+        - type: item
+          item: minecraft:gold_nugget
+          weight: 5
+        - type: item
+          item: minecraft:iron_nugget
+          weight: 8
+
+cearcheology:deepslate:
+  pools:
+    - rolls: 1
+      entries:
+        - type: item
+          item: minecraft:diamond
+          weight: 2
+        - type: item
+          item: minecraft:emerald
+          weight: 3
+        - type: item
+          item: minecraft:gold_ingot
+          weight: 5
+        - type: item
+          item: minecraft:iron_ingot
+          weight: 8
+
+cearcheology:example:
+  pools:
+    - rolls: 1
+      entries:
+        # count as a range; `amount` is an alias for `count`.
+        - type: item
+          item: minecraft:diamond
+          count: 1~3
+          weight: 5
+
+        # display-item: preview differs from the reward.
+        - type: item
+          item: minecraft:dirt
+          display-item: minecraft:diamond
+          count: 1~2
+          weight: 4
+
+        # display-item also accepts {material: ...}.
+        - type: item
+          item: minecraft:emerald
+          display-item:
+            material: minecraft:diamond
+          weight: 2
+
+        # Entity: spawns a mob when brushed out
+        - type: entity
+          item: minecraft:zombie_spawn_egg  # item shown in the display entity
+          entity: ZOMBIE                    # mob to spawn
+          weight: 2
+
+        # Command: runs a command when brushed out
+        - type: command
+          item: minecraft:command_block      # item shown in the display entity
+          command: "give {player} diamond 1" # command to run
+          weight: 1

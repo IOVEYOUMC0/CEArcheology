@@ -1,0 +1,75 @@
+items:
+  cearcheology:suspicious_netherrack:
+    data:
+      item-name: "<!i><red><lang:item.cearcheology.suspicious_netherrack>"
+      lore:
+        - "<!i><gray><lang:item.cearcheology.brush_hint>"
+    model: cearcheology:block/suspicious_netherrack_0
+    behavior:
+      - type: block_item
+        block:
+          settings:
+            template:
+              - default:sound/stone
+            overrides:
+              hardness: 0.3
+              resistance: 0.4
+            tags:
+              - minecraft:mineable/pickaxe
+          behaviors:
+            - type: cearcheology:brushable_block
+              max-progress: 4
+              brush-time: 96
+              required-brush-level: 1
+              loot-table: cearcheology:default
+              result-block: minecraft:netherrack
+              drop-block: minecraft:netherrack
+              experience: 0
+              break-experience: 0
+          loot:
+            template: default:loot_table/self
+          states:
+            properties:
+              brush_progress:
+                type: int
+                range: 0~4
+                default: 0
+            appearances:
+              progress_0:
+                auto-state: solid
+                model: cearcheology:block/suspicious_netherrack_0
+              progress_1:
+                auto-state: solid
+                model: cearcheology:block/suspicious_netherrack_1
+              progress_2:
+                auto-state: solid
+                model: cearcheology:block/suspicious_netherrack_2
+              progress_3:
+                auto-state: solid
+                model: cearcheology:block/suspicious_netherrack_3
+              progress_4:
+                auto-state: solid
+                model: cearcheology:block/suspicious_netherrack_3
+            # Hardness decreases with brush progress. Set all states to the same value for a
+            # single hardness.
+            variants:
+              brush_progress=0:
+                appearance: progress_0
+                settings:
+                  hardness: 0.3
+              brush_progress=1:
+                appearance: progress_1
+                settings:
+                  hardness: 0.27
+              brush_progress=2:
+                appearance: progress_2
+                settings:
+                  hardness: 0.24
+              brush_progress=3:
+                appearance: progress_3
+                settings:
+                  hardness: 0.21
+              brush_progress=4:
+                appearance: progress_4
+                settings:
+                  hardness: 0.18

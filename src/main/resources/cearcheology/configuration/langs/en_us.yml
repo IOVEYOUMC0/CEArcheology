@@ -1,0 +1,30 @@
+# CraftEngine client-side localization for CEArcheology (English).
+# Referenced from the block configs as <lang:item.cearcheology.*>.
+# Each player sees the entry matching their own client language.
+lang#items:
+  en_us:
+    item.cearcheology.suspicious_stone: Suspicious Stone
+    item.cearcheology.suspicious_deepslate: Suspicious Deepslate
+    item.cearcheology.suspicious_dirt: Suspicious Dirt
+    item.cearcheology.suspicious_end_stone: Suspicious End Stone
+    item.cearcheology.suspicious_netherrack: Suspicious Netherrack
+    item.cearcheology.suspicious_sculk: Suspicious Sculk
+    item.cearcheology.brush_hint: Brush it to uncover an item
+    item.cearcheology.brush_copper: Copper Brush
+    item.cearcheology.brush_diamond: Diamond Brush
+    item.cearcheology.brush_netherite: Netherite Brush
+    item.cearcheology.brush_tier_1: Entry tier archeology brush
+    item.cearcheology.brush_tier_2: Advanced archeology brush
+    item.cearcheology.brush_tier_3: Superior archeology brush
+    item.cearcheology.category_name: Suspicious Blocks
+    item.cearcheology.category_lore: Custom archeology plugin
+
+# Server-side block names, for plugins that read a block's localization key.
+lang#blocks:
+  en_us:
+    block_name:cearcheology:suspicious_stone: Suspicious Stone
+    block_name:cearcheology:suspicious_deepslate: Suspicious Deepslate
+    block_name:cearcheology:suspicious_dirt: Suspicious Dirt
+    block_name:cearcheology:suspicious_end_stone: Suspicious End Stone
+    block_name:cearcheology:suspicious_netherrack: Suspicious Netherrack
+    block_name:cearcheology:suspicious_sculk: Suspicious Sculk

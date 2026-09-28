@@ -1,0 +1,59 @@
+name: CEArcheology
+version: ${project.version}
+main: cn.mymc.cearcheology.CEArcheology
+api-version: '1.21'
+authors: ['HuiDu_OwO']
+description: Archeology system plugin built on CraftEngine
+
+depend:
+  - CraftEngine
+
+softdepend:
+  - WorldGuard
+  - GriefPrevention
+  - Towny
+  - Lands
+  - PlotSquared
+  - Residence
+  - ItemsAdder
+  - Oraxen
+  - MythicMobs
+  - MMOItems
+  - Nexo
+
+commands:
+  cearcheology:
+    description: CEArcheology main command
+    usage: /cearcheology <args>
+    aliases: [cea, cearch]
+
+permissions:
+  cearcheology.*:
+    default: op
+    children:
+      cearcheology.command.*: true
+      cearcheology.play.*: true
+  cearcheology.command.*:
+    default: op
+    children:
+      cearcheology.command.help: true
+      cearcheology.command.give: true
+      cearcheology.command.reload: true
+      cearcheology.command.place: true
+  cearcheology.command.help:
+    default: op
+  cearcheology.command.give:
+    default: op
+  cearcheology.command.reload:
+    default: op
+  cearcheology.command.place:
+    default: op
+  cearcheology.play.*:
+    default: true
+    children:
+      cearcheology.play.brush: true
+  cearcheology.play.brush:
+    default: true
+  cearcheology.bypass.protection:
+    description: Bypass region protection checks when brushing or placing
+    default: op

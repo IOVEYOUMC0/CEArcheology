@@ -1,0 +1,61 @@
+# CEArcheology configuration
+
+# Active language; must match a <language>.yml under languages/ (zh_CN and en_US are bundled).
+language: zh_CN
+
+# Reward display entity
+display:
+  # Starting offset outwards from the brushed block face
+  start-offset: 0.03
+  # Ending offset outwards from the brushed block face
+  end-offset: 0.20
+  # Display scale
+  scale: 0.5
+
+# Brushing
+brush:
+  # Ticks between brush ticks (20 ticks = 1 second)
+  tick-interval: 20
+  # Ticks without brushing before the session ends and progress starts decaying
+  session-timeout: 300
+
+# Progress recovery
+recovery:
+  # Delay before recovery starts, in ticks
+  delay: 20
+  # Ticks between recovery steps
+  interval: 5
+
+# Tools
+tools:
+  # Allow the vanilla brush
+  allow-vanilla-brush: true
+  # Treat ANY CraftEngine custom item as a brush.
+  # When on, even custom swords and block items can brush and will lose durability for it.
+  # Normally leave this off and declare the brushes you want under tools/ by id instead.
+  allow-any-ce-brush: false
+
+# Safety net for command-type loot
+command-loot:
+  # Enable the command whitelist
+  enable-whitelist: true
+  # Whitelisted commands, without the leading /
+  # Supported placeholders: {player}, {x}, {y}, {z}, {world}
+  whitelist:
+    - "give {player}"
+    - "effect give {player}"
+    - "playsound"
+    - "particle"
+    - "tell {player}"
+    - "msg {player}"
+    - "title {player}"
+    - "xp add {player}"
+    - "loot give {player}"
+  # World-mutating commands with no placeholder constraint (summon, setblock, ...) are
+  # deliberately absent. Add them only with placeholder constraints, e.g. setblock {x} {y} {z} ...
+
+# Messages live in languages/ and are selected by the language field above.
+# Edit languages/zh_CN.yml or languages/en_US.yml to customise wording.
+
+# Debug mode
+debug: false

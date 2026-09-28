@@ -1,0 +1,16 @@
+# Copper brush. CraftEngine item defined in cearcheology/configuration/brushes.yml.
+
+id: "cearcheology:brush_copper"
+
+name: "Copper Brush"
+
+description: "Entry tier archeology brush"
+
+# Brushing speed multiplier. 1.5x: 96 ticks -> 64 ticks.
+speed: 1.5
+
+# Extra progress granted per brush stage.
+bonus-progress: 0
+
+# 1 = basic, 2 = advanced, 3 = superior
+brush-level: 1

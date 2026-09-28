@@ -1,0 +1,40 @@
+# Custom brush example.
+# Copy this file to e.g. tools/iron_brush.yml (files ending in _example.yml are NOT loaded)
+# and place it in plugins/CEArcheology/tools/.
+
+# Tool ID; must match the CraftEngine item ID.
+id: "cearcheology:iron_brush"
+
+name: "Iron Brush"
+
+description: "A sturdier iron brush"
+
+# Brushing speed multiplier.
+# 1.0 = normal (vanilla 96 ticks = 4.8s)
+# 1.5 = 1.5x (64 ticks = 3.2s)
+# 2.0 = twice as fast (48 ticks = 2.4s)
+# Effective time = brush-time / speed
+speed: 1.5
+
+# Extra progress granted per brush stage.
+# 0 = 1 progress per stage, 1 = 2 progress per stage.
+bonus-progress: 0
+
+# Tool tier. A block is brushable only when brush-level >= its required-brush-level.
+# 1 = basic, 2 = advanced, 3 = superior
+brush-level: 1
+
+# Matching CraftEngine item definition:
+#
+# items:
+#   cearcheology:iron_brush:
+#     data:
+#       item-name: "<!i><white>Iron Brush"
+#       lore:
+#         - "<!i><gray>Used for archeology digging"
+#     model: cearcheology:item/iron_brush
+#
+# How an item is recognised as a brush:
+#   1. Declare it here with id set to the CraftEngine item ID (this file's mechanism).
+#   2. Set tools.allow-any-ce-brush: true in config.yml to accept every CraftEngine
+#      custom item. Broad, and such items will lose durability when brushing.

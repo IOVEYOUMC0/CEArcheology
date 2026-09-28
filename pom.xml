@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.mymc</groupId>
+    <artifactId>CEArcheology</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>CEArcheology</name>
+    <description>基于 CraftEngine 的考古系统插件</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <!-- Lowest 1.21 API keeps the same Java 21 bytecode usable on later 1.21.x servers. -->
+        <paper.version>1.21-R0.1-SNAPSHOT</paper.version>
+        <craft-engine.version>26.8.2</craft-engine.version>
+        <netty.version>4.1.137.Final</netty.version>
+        <!-- WorldGuard 7.0.18 is Java 25; 7.0.17 is the newest Java 21-compatible release. -->
+        <worldguard.version>7.0.17</worldguard.version>
+        <lands-api.version>7.25.4</lands-api.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>paper-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>momirealms-repo</id>
+            <url>https://repo.momirealms.net/releases/</url>
+        </repository>
+        <repository>
+            <id>jitpack</id>
+            <url>https://jitpack.io/</url>
+        </repository>
+        <repository>
+            <id>enginehub-repo</id>
+            <url>https://maven.enginehub.org/repo/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>${paper.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.momirealms</groupId>
+            <artifactId>craft-engine-bukkit</artifactId>
+            <version>${craft-engine.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.momirealms</groupId>
+            <artifactId>craft-engine-core</artifactId>
+            <version>${craft-engine.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Packet-level entity display. CraftEngine publishes this as DependencyVisibility.PUBLIC,
+             so dependent plugins are meant to compile against it; it is not inside craft-engine-bukkit. -->
+        <dependency>
+            <groupId>net.momirealms</groupId>
+            <artifactId>craft-engine-bukkit-proxy</artifactId>
+            <version>${craft-engine.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-buffer</artifactId>
+            <version>${netty.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- 区域保护插件 API（provided：运行时由对应插件提供） -->
+        <dependency>
+            <groupId>com.sk89q.worldguard</groupId>
+            <artifactId>worldguard-bukkit</artifactId>
+            <version>${worldguard.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.angeschossen</groupId>
+            <artifactId>LandsAPI</artifactId>
+            <version>${lands-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- PlotSquared 与 Residence 通过反射集成，无需编译期依赖。 -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>enforce-java</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>[${java.version},)</version>
+                                    <!-- JDK 低于 21 时提前失败。否则 javac 只在真正执行时报错，
+                                         target/classes 比源码新时构建会静默通过。 -->
+                                    <message>
+                                        CEArcheology requires JDK ${java.version} or newer to build,
+                                        but JAVA_HOME points to an older JDK.
+                                        Point JAVA_HOME at any JDK ${java.version}+ install and re-run.
+                                    </message>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.15.0</version>
+                <configuration>
+                    <!--
+                        用 release 而非 source/target：后者只约束语法与字节码版本，javac 仍会
+                        链接构建所用 JDK 的类库，于是在新 JDK 上构建出的 jar 可能引用 Java 21
+                        不存在的方法，直到运行时才以 NoSuchMethodError 暴露。
+                    -->
+                    <release>${java.version}</release>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>

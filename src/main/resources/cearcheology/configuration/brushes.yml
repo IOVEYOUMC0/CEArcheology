@@ -1,0 +1,82 @@
+# Tiered archeology brushes.
+#
+# Plain CraftEngine items. A tool counts as a brush when its CraftEngine item id is listed in
+# plugins/CEArcheology/tools/, so each tier has a matching tools/brush_*.yml.
+#
+# Textures use minecraft:item/brush. For a per-tier texture, add it under
+# resourcepack/assets/cearcheology/textures/item/ and set that tier's `model`, e.g.
+#   model: cearcheology:item/brush_diamond
+#
+# Blocks default to required-brush-level 1, so all tiers can brush all blocks. Raise a block's
+# required-brush-level to require a better brush.
+
+items:
+
+  cearcheology:brush_copper:
+    material: brush
+    data:
+      item-name: "<!i><white><lang:item.cearcheology.brush_copper>"
+      lore:
+        - "<!i><gray><lang:item.cearcheology.brush_tier_1>"
+      max-damage: 250
+    model: minecraft:item/brush
+
+  cearcheology:brush_diamond:
+    material: brush
+    data:
+      item-name: "<!i><aqua><lang:item.cearcheology.brush_diamond>"
+      lore:
+        - "<!i><gray><lang:item.cearcheology.brush_tier_2>"
+      max-damage: 750
+    model: minecraft:item/brush
+
+  cearcheology:brush_netherite:
+    material: brush
+    data:
+      item-name: "<!i><gold><lang:item.cearcheology.brush_netherite>"
+      lore:
+        - "<!i><gray><lang:item.cearcheology.brush_tier_3>"
+      max-damage: 1500
+    model: minecraft:item/brush
+
+# Recipes are a top-level section keyed by recipe id.
+recipes:
+
+  cearcheology:brush_copper:
+    type: shaped
+    pattern:
+      - " AA"
+      - " BA"
+      - "B  "
+    ingredients:
+      A: minecraft:copper_ingot
+      B: minecraft:stick
+    result:
+      id: cearcheology:brush_copper
+      count: 1
+
+  cearcheology:brush_diamond:
+    type: shaped
+    pattern:
+      - "AAA"
+      - "ABA"
+      - "AAA"
+    ingredients:
+      A: minecraft:diamond
+      B: cearcheology:brush_copper
+    result:
+      id: cearcheology:brush_diamond
+      count: 1
+
+  cearcheology:brush_netherite:
+    type: shaped
+    pattern:
+      - "AAA"
+      - "ABA"
+      - "AAA"
+    ingredients:
+      A: minecraft:netherite_ingot
+      B: cearcheology:brush_diamond
+    result:
+      id: cearcheology:brush_netherite
+      count: 1

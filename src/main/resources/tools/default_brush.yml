@@ -1,0 +1,23 @@
+# Default brush: the properties applied to the vanilla brush.
+
+# Tool ID; minecraft:brush is the vanilla brush.
+id: "minecraft:brush"
+
+# Display name, used for logs and debugging.
+name: "Default Brush"
+
+description: "Default brush for archeology digging"
+
+# Brushing speed multiplier.
+# 1.0 = normal (vanilla 96 ticks = 4.8s)
+# 2.0 = twice as fast (48 ticks = 2.4s)
+# 0.5 = half speed (192 ticks = 9.6s)
+speed: 1.0
+
+# Extra progress granted per brush stage.
+# 0 = 1 progress per stage, 1 = 2 progress per stage.
+bonus-progress: 0
+
+# Tool tier. A block is brushable only when brush-level >= its required-brush-level.
+# 1 = basic, 2 = advanced, 3 = superior
+brush-level: 1

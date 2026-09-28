@@ -1,0 +1,30 @@
+# CraftEngine client-side localization for CEArcheology (Simplified Chinese).
+# Referenced from the block configs as <lang:item.cearcheology.*>.
+# Each player sees the entry matching their own client language.
+lang#items:
+  zh_cn:
+    item.cearcheology.suspicious_stone: 可疑的石头
+    item.cearcheology.suspicious_deepslate: 可疑的深板岩
+    item.cearcheology.suspicious_dirt: 可疑的泥土
+    item.cearcheology.suspicious_end_stone: 可疑的末地石
+    item.cearcheology.suspicious_netherrack: 可疑的下界岩
+    item.cearcheology.suspicious_sculk: 可疑的幽匿块
+    item.cearcheology.brush_hint: 使用刷子清理可以发现物品
+    item.cearcheology.brush_copper: 铜刷
+    item.cearcheology.brush_diamond: 钻石刷
+    item.cearcheology.brush_netherite: 下界合金刷
+    item.cearcheology.brush_tier_1: 入门级考古刷
+    item.cearcheology.brush_tier_2: 进阶级考古刷
+    item.cearcheology.brush_tier_3: 高级考古刷
+    item.cearcheology.category_name: 可疑的方块
+    item.cearcheology.category_lore: 自定义考古插件
+
+# Server-side block names, for plugins that read a block's localization key.
+lang#blocks:
+  zh_cn:
+    block_name:cearcheology:suspicious_stone: 可疑的石头
+    block_name:cearcheology:suspicious_deepslate: 可疑的深板岩
+    block_name:cearcheology:suspicious_dirt: 可疑的泥土
+    block_name:cearcheology:suspicious_end_stone: 可疑的末地石
+    block_name:cearcheology:suspicious_netherrack: 可疑的下界岩
+    block_name:cearcheology:suspicious_sculk: 可疑的幽匿块

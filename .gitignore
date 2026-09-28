@@ -1,0 +1,22 @@
+# Build output
+target/
+
+# Pre-warmed Maven repositories (dependencies are vendored, not sources)
+.m2repo_build/
+.api-m2/
+org/
+
+# Bundled Maven distribution
+apache-maven/
+
+# Reference material: upstream clones and the original plugin's distribution.
+# Hundreds of MB, and not part of this project's sources.
+Reference/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Local tool settings
+.claude/

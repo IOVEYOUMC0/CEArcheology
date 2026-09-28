@@ -1,0 +1,12 @@
+namespace: cearcheology
+author: HuiDu_OwO
+description: Archeology system built on CraftEngine
+version: 1.0.0
+enable: true
+
+subpacks:
+  # Natural world generation for the archeology blocks, via Minecraft's own worldgen
+  # pipeline (see subpacks/worldgen/configuration/features.yml).
+  # Off by default: it only affects newly generated chunks, so enabling it later on an
+  # existing world is safe, but turning it off does not remove blocks already generated.
+  worldgen: false

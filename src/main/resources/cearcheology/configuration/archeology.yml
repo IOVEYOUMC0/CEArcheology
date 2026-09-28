@@ -1,0 +1,13 @@
+categories:
+  cearcheology:archeology_blocks:
+    name: "<!i><gold><lang:item.cearcheology.category_name>"
+    icon: "cearcheology:suspicious_stone"
+    lore:
+      - "<!i><gray><lang:item.cearcheology.category_lore>"
+    list:
+      - "cearcheology:suspicious_stone"
+      - "cearcheology:suspicious_deepslate"
+      - "cearcheology:suspicious_dirt"
+      - "cearcheology:suspicious_end_stone"
+      - "cearcheology:suspicious_netherrack"
+      - "cearcheology:suspicious_sculk"

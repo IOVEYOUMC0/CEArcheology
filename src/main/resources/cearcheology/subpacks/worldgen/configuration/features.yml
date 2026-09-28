@@ -1,0 +1,205 @@
+# Natural generation for the archeology blocks.
+#
+# This is CraftEngine's placed_features section, which feeds Minecraft's own worldgen
+# pipeline - blocks are written while the chunk is generated, exactly like vanilla ores.
+# Only NEWLY generated chunks are affected; already-explored terrain is left alone.
+#
+# Disabled by default. Set `worldgen: true` under `subpacks` in pack.yml to switch it on,
+# then run /ce reload (a restart is not required, but existing chunks stay unchanged).
+#
+# Tuning, per entry:
+#   rarity_filter.chance  - 1 in N chunks even attempts the feature. Higher = rarer.
+#   count                 - attempts per chunk that passed the rarity filter.
+#   size                  - blocks per vein. Keep small; these are meant to be found singly.
+#   height_range          - where it may appear.
+# discard_chance_on_air_exposure is 0.0, so blocks exposed in a cave wall still generate.
+#
+# Height shape: vanilla has no gaussian height provider. `minecraft:trapezoid` with plateau 0 is a
+# symmetric triangular distribution, densest in the middle of the range. Raise `plateau` to flatten
+# the middle. CraftEngine's `placement` list accepts vanilla placement modifiers plus its own
+# `biome` filter.
+#
+# Structure gating: vanilla has no "only inside structure X" placement modifier. Scope is expressed
+# through the replaced block instead; suspicious_sculk targets sculk, which only occurs in ancient
+# cities.
+
+placed_features:
+
+  cearcheology:suspicious_stone:
+    dimension_type:
+      - minecraft:overworld
+    feature:
+      type: minecraft:ore
+      config:
+        discard_chance_on_air_exposure: 0.0
+        size: 2
+        targets:
+          - state:
+              Name: cearcheology:suspicious_stone
+            target:
+              predicate_type: minecraft:tag_match
+              tag: minecraft:stone_ore_replaceables
+    placement:
+      - type: minecraft:rarity_filter
+        chance: 6
+      - type: minecraft:count
+        count: 3
+      - type: minecraft:in_square
+      - type: minecraft:height_range
+        height:
+          type: minecraft:trapezoid
+          min_inclusive:
+            absolute: 0
+          max_inclusive:
+            absolute: 120
+          plateau: 0
+
+  cearcheology:suspicious_deepslate:
+    dimension_type:
+      - minecraft:overworld
+    feature:
+      type: minecraft:ore
+      config:
+        discard_chance_on_air_exposure: 0.0
+        size: 2
+        targets:
+          - state:
+              Name: cearcheology:suspicious_deepslate
+            target:
+              predicate_type: minecraft:tag_match
+              tag: minecraft:deepslate_ore_replaceables
+    placement:
+      - type: minecraft:rarity_filter
+        chance: 6
+      - type: minecraft:count
+        count: 3
+      - type: minecraft:in_square
+      - type: minecraft:height_range
+        height:
+          type: minecraft:trapezoid
+          min_inclusive:
+            absolute: -60
+          max_inclusive:
+            absolute: 8
+          plateau: 0
+
+  cearcheology:suspicious_dirt:
+    dimension_type:
+      - minecraft:overworld
+    feature:
+      type: minecraft:ore
+      config:
+        discard_chance_on_air_exposure: 0.0
+        size: 3
+        targets:
+          - state:
+              Name: cearcheology:suspicious_dirt
+            target:
+              predicate_type: minecraft:block_match
+              block: minecraft:dirt
+    placement:
+      - type: minecraft:rarity_filter
+        chance: 4
+      - type: minecraft:count
+        count: 4
+      - type: minecraft:in_square
+      - type: minecraft:height_range
+        height:
+          type: minecraft:trapezoid
+          min_inclusive:
+            absolute: 45
+          max_inclusive:
+            absolute: 100
+          plateau: 0
+
+  cearcheology:suspicious_netherrack:
+    dimension_type:
+      - minecraft:the_nether
+    feature:
+      type: minecraft:ore
+      config:
+        discard_chance_on_air_exposure: 0.0
+        size: 2
+        targets:
+          - state:
+              Name: cearcheology:suspicious_netherrack
+            target:
+              predicate_type: minecraft:block_match
+              block: minecraft:netherrack
+    placement:
+      - type: minecraft:rarity_filter
+        chance: 5
+      - type: minecraft:count
+        count: 4
+      - type: minecraft:in_square
+      - type: minecraft:height_range
+        height:
+          type: minecraft:trapezoid
+          min_inclusive:
+            absolute: 10
+          max_inclusive:
+            absolute: 118
+          plateau: 0
+
+  cearcheology:suspicious_end_stone:
+    dimension_type:
+      - minecraft:the_end
+    feature:
+      type: minecraft:ore
+      config:
+        discard_chance_on_air_exposure: 0.0
+        size: 2
+        targets:
+          - state:
+              Name: cearcheology:suspicious_end_stone
+            target:
+              predicate_type: minecraft:block_match
+              block: minecraft:end_stone
+    placement:
+      - type: minecraft:rarity_filter
+        chance: 5
+      - type: minecraft:count
+        count: 3
+      - type: minecraft:in_square
+      - type: minecraft:height_range
+        height:
+          type: minecraft:trapezoid
+          min_inclusive:
+            absolute: 0
+          max_inclusive:
+            absolute: 80
+          plateau: 0
+
+  # Sculk only exists in the deep dark, so this rides along with it rather than
+  # generating its own patches.
+  cearcheology:suspicious_sculk:
+    dimension_type:
+      - minecraft:overworld
+    biome:
+      - minecraft:deep_dark
+    feature:
+      type: minecraft:ore
+      config:
+        discard_chance_on_air_exposure: 0.0
+        size: 2
+        targets:
+          - state:
+              Name: cearcheology:suspicious_sculk
+            target:
+              predicate_type: minecraft:block_match
+              block: minecraft:sculk
+    placement:
+      - type: minecraft:rarity_filter
+        chance: 3
+      - type: minecraft:count
+        count: 4
+      - type: minecraft:in_square
+      - type: minecraft:height_range
+        height:
+          type: minecraft:trapezoid
+          min_inclusive:
+            absolute: -60
+          max_inclusive:
+            absolute: 0
+          plateau: 0
+      - type: minecraft:biome
